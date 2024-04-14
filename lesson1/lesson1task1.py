@@ -1,3 +1,3 @@
-my_name = "Alfred"
+my_name = "Альфред"
 print(my_name)
 

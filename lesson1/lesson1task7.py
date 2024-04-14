@@ -2,7 +2,7 @@
 def num(letter):
     print(letter, end= "")
 
-num(8)
+num(8 )
 num(8)
 num(0)
 num(0)

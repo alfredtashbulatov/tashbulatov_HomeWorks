@@ -13,7 +13,7 @@ def three():
 def four():
     print(end="4")
 
-def five():
+def Five():
     print(end="5")
 
 def six():
@@ -32,10 +32,10 @@ eight()
 eight()
 zero()
 zero()
-five()
-five()
-five()
+Five()
+Five()
+Five()
 three()
-five()
+Five()
 three()
-five()
+Five()
