@@ -1,3 +1,4 @@
-lst = [ 18, 14, 10, 6, 2]
-for n in range(0, len(lst)):
-    print(lst[n])
+num_set = list(range(18, 0, -4))
+print(num_set)
+
+
