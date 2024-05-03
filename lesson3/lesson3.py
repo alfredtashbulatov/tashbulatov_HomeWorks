@@ -1,10 +1,3 @@
-# class user:
-#     age = 0 
-#     name = "noname"
-#     email = "test@mail.com"
-
-# users = user()
-
 class user:
     age = 0
 
