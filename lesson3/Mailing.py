@@ -1,6 +1,6 @@
 class mailing:
-    def __init__(self, to_address, from_address, Cost, track):
+    def __init__(self, to_address, from_address, cost, track):
         self.to_address = to_address
         self.from_address = from_address
-        self.Cots = Cost
+        self.cots = cost
         self.track = track

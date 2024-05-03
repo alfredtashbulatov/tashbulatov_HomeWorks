@@ -1,3 +1,3 @@
 from User import user
-myuser = user
-print(myuser)
+my_user = user
+print(my_user)

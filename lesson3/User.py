@@ -14,6 +14,6 @@ class user:
         print(self.last_name, self.first_name)    
             
 
-alfred = user("alfred")
-alfred.lastname("tashbulatov")
-alfred.flname()
+Alfred = user("alfred")
+Alfred.lastname("tashbulatov")
+Alfred.flname()
