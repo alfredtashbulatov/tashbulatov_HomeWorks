@@ -12,13 +12,6 @@ class user:
 
     def flname(self):
         print(self.last_name, self.first_name)    
-    
-    # def __init__(self, name):
-    #     print("Иеня зовут", name)
-    #     self.username = name
-
-    # def last_name(self, lastname):
-    #     print("моя фамилия", lastname)
             
 
 alfred = user("alfred")
