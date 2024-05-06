@@ -1,4 +1,4 @@
-from  Smartphone import  smartphone
+from  smartphone import  Smartphone
 catalog = []
 phone1 = smartphone('samsung', 'A 54 5G', '+7 999 999 99 99')
 phone2 = smartphone('samsung', 'S 24 ULTRA', '+7 888 888 88 88')

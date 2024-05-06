@@ -1,3 +1,3 @@
-from User import user
+from user import User
 my_user = user
 print(my_user)
