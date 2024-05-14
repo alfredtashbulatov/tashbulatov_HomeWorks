@@ -1,9 +1,9 @@
-from Address import address
-from Mailing import mailing
+from address import Address
+from mailing import Mailing
 
-to_address = address('111024','Москва', 'Душинская', '16', '25')
-from_address = address('122445', 'Уфа', 'Проспект октября', '15', '56')
-Mailing = mailing(to_address, from_address, 1234, 'Коробка 500гр')
+to_address = Address('111024','Москва', 'Душинская', '16', '25')
+from_address = Address('122445', 'Уфа', 'Проспект октября', '15', '56')
+Mailing = Mailing(to_address, from_address, 1234, 'Коробка 500гр')
 
 print(f"Отправление {Mailing.track} из {Mailing.from_address.index}, {Mailing.from_address.sity,}"
       f"{Mailing.from_address.street}, {Mailing.from_address.house} - {Mailing.from_address.apartment}"

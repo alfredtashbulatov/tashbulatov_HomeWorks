@@ -1,4 +1,4 @@
-class user:
+class User:
     first_name = ""
     last_name = ""
     
@@ -14,6 +14,6 @@ class user:
         print(self.last_name, self.first_name)    
             
 
-Alfred = user("alfred")
-Alfred.lastname("tashbulatov")
-Alfred.flname()
+alfred = user("alfred")
+alfred.lastname("tashbulatov")
+alfred.flname()
