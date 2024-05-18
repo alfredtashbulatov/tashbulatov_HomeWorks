@@ -97,15 +97,7 @@ class StringUtils:
         return string == ""
     
     def list_to_string(self, lst: list, joiner=", ") -> str:
-        # """
-        # Преобразует список элементов в строку с указанным разделителем \n 
-        # Параметры: \n 
-        #     `lst` - список элементов \n
-        #     `joiner` - разделитель элементов в строке. По умолчанию запятая (", ") \n
-        # Пример 1: `list_to_string([1,2,3,4]) -> "1, 2, 3, 4"`
-        # Пример 2: `list_to_string(["Sky", "Pro"]) -> "Sky, Pro"`
-        # Пример 3: `list_to_string(["Sky", "Pro"], "-") -> "Sky-Pro"`
-        # """
+       
         string = ""
         length = len(lst)
         
