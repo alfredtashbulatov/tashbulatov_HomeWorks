@@ -1,18 +1,20 @@
-from time import sleep
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+from time import sleep
+chrome = webdriver.Chrome()
+ff = webdriver.Firefox()
 
-driver.maximize_window()
-driver.get("http://the-internet.herokuapp.com/entry_ad")
-sleep(10)
+def browser (driver):
+    driver.get("http://the-internet.herokuapp.com/entry_ad")
+    sleep(10)
+    click = driver.find_element(By.CSS_SELECTOR, 'div[class="modal-footer"]')
+    sleep(1)
+    click.click()
+    sleep(5)
 
-button_close = ('div[class="modal-footer"]')
-
-click = driver.find_element(By.CSS_SELECTOR, button_close)
+browser(chrome)
+browser(ff)
 sleep(1)
-click.click()
-sleep(5)
+chrome.quit()
+ff.quit()
