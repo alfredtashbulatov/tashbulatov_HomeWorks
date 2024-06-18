@@ -56,9 +56,6 @@ def test_employee_list_company():
     res = metod.employee_list_company(id)
     assert len(res) > 0
     
-    
-
-    
 # добавление сотрудника 
 def test_add_employe_in_company():
     name = "test mp3"
@@ -73,8 +70,7 @@ def test_add_employe_in_company():
     assert new_id == res["id"]
     assert emp_id == resp['id']
     
-
-    # поиск сотрудника по id
+# поиск сотрудника по id
 def test_search_employee_by_id():
     name = "test mp4"
     desc = "nwe rosk"

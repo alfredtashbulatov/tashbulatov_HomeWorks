@@ -48,12 +48,11 @@ class metods:
         resp = requests.patch(self.url + "/company/"+ str(new_id), headers=my_headers, json=new_company)
         return resp.json()
     
-
 # удаление компании
     def delete_company(self, id):
         my_headers = {}
         my_headers["x-client-token"] = self.auth()
-        resp = requests.get(self.url + "/company/delete/" + str(id),headers=my_headers)
+        resp = requests.delete(self.url + "/company/delete/" + str(id),headers=my_headers)
         return resp.json()
     
 # активация компании
@@ -67,7 +66,7 @@ class metods:
     def employee_list_company(self, id):
         my_headers = {}
         my_headers["x-client-token"] = self.auth()
-        resp = requests.get(self.url + "/employee", str(id), headers=my_headers)
+        resp = requests.get(self.url + "/employee"+ str(id), headers=my_headers)
         return resp.json()
 
 # добавление сотрудника 
@@ -89,16 +88,14 @@ class metods:
         resp = requests.post(self.url + "/employee",  headers=my_headers, json=data_empl)
         return resp.json()
     
-    # поиск сотрудника по id
+# поиск сотрудника по id
     def search_employee_by_id(self, id):
-        # result = requests.get(self.url + "/employee/", str(emp_id))
-        # return result.json()
         my_headers = {}
         my_headers["x-client-token"] = self.auth()
         resp = requests.get(self.url + "/employee/" + str(id), headers=my_headers)
         return resp.json()
     
-    # изменить информацию о сотруднике 
+# изменить информацию о сотруднике 
     def edit_info_employee(self, id, new_name, new_mail, new_phone, isActive):
         edit_emp =  {
             "lastName": new_name,
