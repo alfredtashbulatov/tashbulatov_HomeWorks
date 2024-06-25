@@ -13,9 +13,7 @@ class CompanyTable:
         "insert new": text("insert into company(\"name\") values (:new_name)"),
         "get new id": "select MAX(\"id\") from company where deleted_at is null",
         "get new e": text("select MAX(\"id\") from employee where company_id =:c_id"),
-        # "update employee" : text('update employee set (first_name, id) where (:f_name, :emp_id)'),
         "update employee" : text('update employee set first_name =:f_name where id =:emp_id'),
-        # "update employee" : text('update employee set (\"first_name\")(\"id\") where (:f_name, :emp_id)'),
         "get new employee" : text(
             'insert into employee (company_id, first_name, last_name, phone) values (:c_id, :f_name, :l_name, :ph)')
     }
@@ -59,7 +57,7 @@ class CompanyTable:
                                  ).fetchall
     
 # удаление сотрудника    
-    def dellete_employee(self, id):
+    def delete_employee(self, id):
         return self.__db.execute(self.__scripts["delete employee"], id_to_delete=id )
     
 # получение сотрудника по id

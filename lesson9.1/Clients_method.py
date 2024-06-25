@@ -1,6 +1,6 @@
 import requests
 
-class metods:
+class Api:
     
     def __init__(self, url) -> None:
         self.url = url
@@ -13,6 +13,12 @@ class metods:
         resp = requests.post(self.url + '/auth/login', json=creds)
         return resp.json()["userToken"] 
 
+    def x_client_token(self):
+        token = {}
+        token["x-client-token"] = self.auth()
+        return  token
+
+
  # получение списка компаний
     def take_list_company(self, params_to_add=None):
         resp = requests.get(self.url + "/company")
@@ -24,49 +30,43 @@ class metods:
             "name": name,
             "description": description
         }
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth()
+        token = self.x_client_token()
         resp = requests.post(self.url + '/company',
-                             json=company, headers=my_headers)
+                             json=company, headers=token)
         return resp.json()
 
 # получение конкретной компании
     def search_company_by_id(self, new_id):
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth()
-        resp = requests.get(self.url + "/company/"+ str(new_id), headers=my_headers)
+        token = self.x_client_token()
+        resp = requests.get(self.url + "/company/"+ str(new_id), headers=token)
         return resp.json()
 
 # изменение компании
     def edit_info_conpany(self, new_id, new_name, new_descr):
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth()
+        token = self.x_client_token()
         new_company = {
             "name": new_name,
             "description": new_descr
         }
-        resp = requests.patch(self.url + "/company/"+ str(new_id), headers=my_headers, json=new_company)
+        resp = requests.patch(self.url + "/company/"+ str(new_id), headers=token, json=new_company)
         return resp.json()
     
 # удаление компании
     def delete_company(self, id):
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth()
-        resp = requests.delete(self.url + "/company/delete/" + str(id),headers=my_headers)
+        token = self.x_client_token()
+        resp = requests.delete(self.url + "/company/delete/" + str(id),headers=token)
         return resp.json()
     
 # активация компании
     def control_company(self, id, isActive):
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth()
-        resp = requests.patch(self.url + "/company/status/" + str(id), headers=my_headers, json={"isActive": isActive})
+        token = self.x_client_token()
+        resp = requests.patch(self.url + "/company/status/" + str(id), headers=token, json={"isActive": isActive})
         return resp.json()
     
 # получить список сотрудников для компании
     def employee_list_company(self, id):
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth()
-        resp = requests.get(self.url + "/employee"+ str(id), headers=my_headers)
+        token = self.x_client_token()
+        resp = requests.get(self.url + "/employee"+ str(id), headers=token)
         return resp.json()
 
 # добавление сотрудника 
@@ -83,16 +83,14 @@ class metods:
             "birthdate": None,
             "isActive": True
             }
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth()
-        resp = requests.post(self.url + "/employee",  headers=my_headers, json=data_empl)
+        token = self.x_client_token()
+        resp = requests.post(self.url + "/employee",  headers=token, json=data_empl)
         return resp.json()
     
 # поиск сотрудника по id
     def search_employee_by_id(self, id):
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth()
-        resp = requests.get(self.url + "/employee/" + str(id), headers=my_headers)
+        token = self.x_client_token()
+        resp = requests.get(self.url + "/employee/" + str(id), headers=token)
         return resp.json()
     
 # изменить информацию о сотруднике 
@@ -104,7 +102,6 @@ class metods:
             "phone": new_phone,
             "isActive": isActive
             }   
-        my_headers = {}
-        my_headers["x-client-token"] = self.auth() 
-        resp = requests.patch(self.url + "/employee/" + str(id), headers=my_headers, json=edit_emp)
+        token = self.x_client_token()
+        resp = requests.patch(self.url + "/employee/" + str(id), headers=token, json=edit_emp)
         return resp.json()

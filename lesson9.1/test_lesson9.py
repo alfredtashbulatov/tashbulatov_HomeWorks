@@ -1,8 +1,8 @@
-from Clients_method import metods
+from Clients_method import Api
 from data_base import CompanyTable
 import requests
 import pytest
-metod = metods("https://x-clients-be.onrender.com")
+api = Api("https://x-clients-be.onrender.com")
 db = CompanyTable("postgres://x_clients_db_3fmx_user:mzoTw2Vp4Ox4NQH0XKN3KumdyAYE31uq@dpg-cour99g21fec73bsgvug-a.oregon-postgres.render.com/x_clients_db_3fmx")
 
 # сооздание компании
@@ -10,7 +10,7 @@ def test_add_new_company():
     name = "alfred"
     res= db.create_compayny(name)
     new_id = db.search_max_id()
-    body = metod.take_list_company()
+    body = api.take_list_company()
     db.delete_company(new_id)
 
     assert body[-1]["name"] == name
@@ -21,7 +21,7 @@ def test_search_company():
     name = "coffe"
     db.create_compayny(name)
     new_id = db.search_max_id()
-    res = metod.search_company_by_id(new_id)
+    res = api.search_company_by_id(new_id)
     db.delete_company(new_id)
 
     assert res["id"] == new_id
@@ -33,8 +33,8 @@ def test_diactivate_and_activate():
     name = "bravo"
     db.create_compayny(name)
     new_id = db.search_max_id()
-    metod.control_company(new_id, False)
-    res = metod.control_company(new_id, True)
+    api.control_company(new_id, False)
+    res = api.control_company(new_id, True)
     db.delete_company(new_id)
     assert res["isActive"] == True 
 
@@ -45,13 +45,13 @@ def test_employee_list_company_db():
     f_Name = "tom"
     l_Name = "ford"
     ph = "9 999 999 99 99"
-    res = metod.create_company(name, desc)
+    res = api.create_company(name, desc)
     new_id = res["id"]
-    resp = metod.add_employee(new_id, f_Name, l_Name, ph)
+    resp = api.add_employee(new_id, f_Name, l_Name, ph)
     e_id = resp["id"]
     result = db.get_employee(new_id)
 
-    db.dellete_employee(e_id)
+    db.delete_employee(e_id)
     db.delete_company(new_id) 
 
 # удаление компании
@@ -61,12 +61,12 @@ def test_delete_comp():
     f_Name = "tom"
     l_Name = "ford"
     ph = "9 999 999 99 99"
-    res= metod.create_company(name, desc)
+    res= api.create_company(name, desc)
     new_id = res["id"]
     c_id = res["id"]
-    resp = metod.add_employee(c_id, f_Name, l_Name, ph)
+    resp = api.add_employee(c_id, f_Name, l_Name, ph)
     emp_id = resp["id"]
-    db.dellete_employee(emp_id)
+    db.delete_employee(emp_id)
     db.delete_company(new_id)  
 
 # добавление сотрудника 
@@ -76,9 +76,9 @@ def test_add_employe_in_company():
     firstName = "vadik"
     lastName = "shageev"
     phone = "9 999 999 99 99"
-    res = metod.create_company(name, desc)
+    res = api.create_company(name, desc)
     new_id = res["id"]
-    resp = metod.add_employee(new_id, firstName, lastName, phone)
+    resp = api.add_employee(new_id, firstName, lastName, phone)
     emp_id = resp["id"]
     assert new_id == res["id"]
     assert emp_id == resp['id']    
@@ -88,7 +88,7 @@ def test_search_company():
     name = "coffe"
     db.create_compayny(name)
     new_id = db.search_max_id()
-    res = metod.search_company_by_id(new_id)
+    res = api.search_company_by_id(new_id)
     db.delete_company(new_id)
 
     assert res["id"] == new_id
@@ -100,8 +100,8 @@ def test_diactivate_and_activate():
     name = "bravo"
     db.create_compayny(name)
     new_id = db.search_max_id()
-    metod.control_company(new_id, False)
-    res = metod.control_company(new_id, True)
+    api.control_company(new_id, False)
+    res = api.control_company(new_id, True)
     db.delete_company(new_id)
     assert res["isActive"] == True
 
@@ -115,7 +115,7 @@ def test_add_employe():
     new_id = db.search_max_id()
     db.add_new_employee(new_id, f_Name, l_Name, ph)
     emp_id = db.search_max_id_emp(new_id)
-    db.dellete_employee(emp_id)
+    db.delete_employee(emp_id)
     db.delete_company(new_id)
 
 # получение списка сотрудников 
@@ -126,11 +126,11 @@ def test_employee_list_company_db():
     ph = "9 999 999 99 99"
     db.create_compayny(name)
     new_id = db.search_max_id()
-    resp = metod.add_employee(new_id, f_Name, l_Name, ph)
+    resp = api.add_employee(new_id, f_Name, l_Name, ph)
     e_id = resp["id"]
     result = db.get_employee(new_id)
 
-    db.dellete_employee(e_id)
+    db.delete_employee(e_id)
     db.delete_company(new_id)
     assert len(resp) > 0
 
@@ -147,7 +147,7 @@ def test_employee_list_company_db():
     db.add_new_employee(new_id, f_Name, l_Name, ph)
     emp_id = db.search_max_id_emp(new_id)
     
-    db.dellete_employee(emp_id)
+    db.delete_employee(emp_id)
     db.delete_company(new_id)
 
 # получение сотрудника по id 
@@ -165,7 +165,7 @@ def test_search_employee_by_id():
 
     # db.search_employee_by_id(emp_id)
 
-    db.dellete_employee(emp_id)
+    db.delete_employee(emp_id)
     db.delete_company(new_id)
 
 #редактирования сотрудника 
@@ -185,5 +185,5 @@ def test_update_employee():
     new_name = "parebrick"
     db.update_employee(new_name, emp_id)
 
-    db.dellete_employee(emp_id)
+    db.delete_employee(emp_id)
     db.delete_company(new_id)        
