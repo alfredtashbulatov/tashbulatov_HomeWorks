@@ -17,7 +17,7 @@ class Main_Page:
                 with allure.step("Вызов метода ввода данных. ввод значения '45' "):
                     input.send_keys("45")
     
-    @allure.ster("Ввод данных на калькуляторе")
+    @allure.step("Ввод данных на калькуляторе")
     def button_click(self):
         with allure.step("Клик на элемент с атрибутом '//span[text()=7]'"):
             self.driver.find_element(By.XPATH, '//span[text()="7"]').click()
