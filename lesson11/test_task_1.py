@@ -4,7 +4,7 @@ from selenium import webdriver
 from time import sleep
 import allure
 
-@allure.title("Запролнение вормы значениями")
+@allure.title("Запролнение формы значениями")
 @allure.description("Тест заполняет форму 'Data Types' значениями кроме поля 'zip-code',\
                     проверяет цвета заполненных полей (зеленый) и пустого поля 'zip-code'(красный) ")
 @allure.feature("INPUT DATA")
